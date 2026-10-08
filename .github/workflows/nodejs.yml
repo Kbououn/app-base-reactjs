@@ -1,0 +1,51 @@
+name: CI - Build & Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Check node version
+        run: npm --version
+        
+      # - name: Install dependencies
+      #   run: npm install
+
+      # - name: Build
+      #   run: npm run build
+
+      # - name: Start app
+      #   run: |
+      #     npm start &
+      #     echo $! > app.pid
+      #     echo "App started with PID $(cat app.pid)"
+
+      # - name: Wait for server to be ready
+      #   run: |
+      #     npx --yes wait-on http://localhost:3000
+
+      # - name: Test with curl
+      #   run: |
+      #     curl -I http://localhost:3000 | grep "200"
+
+      # - name: Show logs if failed
+      #   if: failure()
+      #   run: cat app.log
+
+      # - name: Stop app
+      #   if: always()
+      #   run: |
+      #     kill $(cat app.pid) || true
