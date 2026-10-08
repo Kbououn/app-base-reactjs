@@ -18,28 +18,25 @@ jobs:
           node-version: 20
           cache: npm
 
-      - name: Check node version
-        run: npm --version
-        
-      # - name: Install dependencies
-      #   run: npm install
+      - name: Install dependencies
+        run: npm install
 
-      # - name: Build
-      #   run: npm run build
+      - name: Build
+        run: npm run build
 
-      # - name: Start app
-      #   run: |
-      #     npm start &
-      #     echo $! > app.pid
-      #     echo "App started with PID $(cat app.pid)"
+      - name: Start app
+        run: |
+          npm start &
+          echo $! > app.pid
+          echo "App started with PID $(cat app.pid)"
 
-      # - name: Wait for server to be ready
-      #   run: |
-      #     npx --yes wait-on http://localhost:3000
+      - name: Wait for server to be ready
+        run: |
+          npx --yes wait-on http://localhost:3000
 
-      # - name: Test with curl
-      #   run: |
-      #     curl -I http://localhost:3000 | grep "200"
+      - name: Test with curl
+        run: |
+          curl -I http://localhost:3000 | grep "200"
 
       # - name: Show logs if failed
       #   if: failure()
